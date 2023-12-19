@@ -82,9 +82,6 @@ describe('SignUp API Test', () => {
                 "device_token": "device_token" 
             }
   
-
-
-            
         })
           //---------------Manager Login----------------------//
         cy.request({
