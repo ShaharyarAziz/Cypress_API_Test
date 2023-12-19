@@ -69,7 +69,7 @@ describe('SignUp API Test', () => {
                 "user_type": "chef",
                 "device_token": "device_token"
             }
-
+       
         })
           //---------------Waiter Login----------------------//
         cy.request({
