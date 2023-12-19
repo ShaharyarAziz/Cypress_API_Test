@@ -1,4 +1,4 @@
-describe('SignUp API Test', () => {
+describe('POST API Test', () => {
     it('POST API', () => {
         //---------------User Creation----------------------//
         // cy.request({
@@ -60,46 +60,43 @@ describe('SignUp API Test', () => {
     });
     //--------------- Login----------------------//
     it('Login POST REQUEST', () => {
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
-            body: {
-                "email": "cheftesters@gmail.com",
-                "password": "shery123456",
-                "user_type": "chef",
-                "device_token": "device_token"
-            }
-       
-        })
-          //---------------Waiter Login----------------------//
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
-            body: {
-                "email": "waitertesters@gmail.com",
-                "password": "shery123456",
-                "user_type": "waiter",
-                "device_token": "device_token" 
-            }
-  
+        // cy.request({
+        //     method: 'POST',
+        //     url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
+        //     body: {
+        //         "email": "cheftesters@gmail.com",
+        //         "password": "shery123456",
+        //         "user_type": "chef",
+        //         "device_token": "device_token"
+        //     }
 
+        //})
+        //---------------Waiter Login----------------------//
+        // cy.request({
+        //     method: 'POST',
+        //     url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
+        //     body: {
+        //         "email": "waitertesters@gmail.com",
+        //         "password": "shery123456",
+        //         "user_type": "waiter",
+        //         "device_token": "device_token"
+        //     }
 
-            
-        })
-          //---------------Manager Login----------------------//
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
-            body: {
-                "email": "admintesters@gmail.com",
-                "password": "shery123456",
-                "user_type": "manager",
-                "device_token": "device_token"
-            }
+        // })
+        // //---------------Manager Login----------------------//
+        // cy.request({
+        //     method: 'POST',
+        //     url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
+        //     body: {
+        //         "email": "admintesters@gmail.com",
+        //         "password": "shery123456",
+        //         "user_type": "manager",
+        //         "device_token": "device_token"
+        //     }
 
-        })
+        // })
 
-           //---------------User Login----------------------//
+        //---------------User Login----------------------//
         cy.request({
             method: 'POST',
             url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
@@ -110,8 +107,9 @@ describe('SignUp API Test', () => {
                 "device_token": "device_token"
             }
 
-        })
-          //---------------Forgot Password----------------------//
+        }).then((response) => { 
+            cy.log('Response', response.body.data.email); });
+        //---------------Forgot Password----------------------//
         //   cy.request({
         //     method: 'POST',
         //     url: 'https://bsm-backend-production-f5e9.up.railway.app/forget-password',
@@ -121,18 +119,24 @@ describe('SignUp API Test', () => {
         //     }
 
         // })
-           //---------------Logout----------------------//
-           cy.request({
+        //---------------Logout----------------------//
+        cy.request({
             method: 'POST',
             url: 'https://bsm-backend-production-f5e9.up.railway.app/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODEzNGZkNjI4NjY4MDAyZGUwOGRkMyIsImVtYWlsIjoic2hhaGFyeWFyLmN4QGdtYWlsLmNvbSIsInVzZXJfdHlwZSI6InVzZXIiLCJpYXQiOjE3MDI5NjgyODEwMDcsImV4cCI6MTcwMjk3MDg3MzAwN30.MWz9wiq_VbYneoo7VVKpx8ACutpnJW5pzXBqUyTgiQc`,
-                
-              },
+
+            },
 
         })
 
+
     });
 
+});
+describe('GET API Test', () => {
+    it('Get Restaurants', () => {
+        cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/?id=655f41ea50391f005a536035')
+    })
 });
