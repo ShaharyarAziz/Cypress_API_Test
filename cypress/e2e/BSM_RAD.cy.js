@@ -79,9 +79,12 @@ describe('SignUp API Test', () => {
                 "email": "waitertesters@gmail.com",
                 "password": "shery123456",
                 "user_type": "waiter",
-                "device_token": "device_token"
+                "device_token": "device_token" 
             }
+  
 
+
+            
         })
           //---------------Manager Login----------------------//
         cy.request({
