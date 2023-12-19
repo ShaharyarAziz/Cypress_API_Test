@@ -107,7 +107,8 @@ describe('POST API Test', () => {
                 "device_token": "device_token"
             }
 
-        }).then((response) => { cy.log('Response', response) })
+        }).then((response) => { 
+            cy.log('Response', response.body.data.email); });
         //---------------Forgot Password----------------------//
         //   cy.request({
         //     method: 'POST',
