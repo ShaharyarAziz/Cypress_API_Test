@@ -97,21 +97,21 @@ describe('POST API Test', () => {
         // })
 
         //---------------User Login----------------------//
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
-            body: {
-                "email": "shaharyar.cx@gmail.com",
-                "password": "12345678",
-                "user_type": "user",
-                "device_token": "device_token"
-            }
+        // cy.request({
+        //     method: 'POST',
+        //     url: 'https://bsm-backend-production-f5e9.up.railway.app/login',
+        //     body: {
+        //         "email": "shaharyar.cx@gmail.com",
+        //         "password": "12345678",
+        //         "user_type": "user",
+        //         "device_token": "device_token"
+        //     }
 
-        }).then((response) => {
+        // }).then((response) => {
 
-            // cy.log('Response', response);
-            cy.log('Response:', JSON.stringify(response, null, 2));
-        });
+        //     // cy.log('Response', response);
+        //     cy.log('Response:', JSON.stringify(response, null, 2));
+        // });
         //---------------Forgot Password----------------------//
         //   cy.request({
         //     method: 'POST',
@@ -123,35 +123,36 @@ describe('POST API Test', () => {
 
         // })
         //---------------Logout----------------------//
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/logout',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODEzNGZkNjI4NjY4MDAyZGUwOGRkMyIsImVtYWlsIjoic2hhaGFyeWFyLmN4QGdtYWlsLmNvbSIsInVzZXJfdHlwZSI6InVzZXIiLCJpYXQiOjE3MDI5NjgyODEwMDcsImV4cCI6MTcwMjk3MDg3MzAwN30.MWz9wiq_VbYneoo7VVKpx8ACutpnJW5pzXBqUyTgiQc`,
+        // cy.request({
+        //     method: 'POST',
+        //     url: 'https://bsm-backend-production-f5e9.up.railway.app/logout',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODEzNGZkNjI4NjY4MDAyZGUwOGRkMyIsImVtYWlsIjoic2hhaGFyeWFyLmN4QGdtYWlsLmNvbSIsInVzZXJfdHlwZSI6InVzZXIiLCJpYXQiOjE3MDI5NjgyODEwMDcsImV4cCI6MTcwMjk3MDg3MzAwN30.MWz9wiq_VbYneoo7VVKpx8ACutpnJW5pzXBqUyTgiQc`,
 
-            },
+        //     },
 
-        })
+        // })
 
 
     });
 
 });
+/--------------------------GET API---------------------------/
 describe('GET API Test', () => {
-    it('Get Restaurants', () => {
-        cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/?id=655f41ea50391f005a536035').then((response) => {
+    // it('Get Restaurants', () => {
+    //     cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/?id=655f41ea50391f005a536035').then((response) => {
 
-            cy.log('Response:', JSON.stringify(response, null, 2))
+    //         cy.log('Response:', JSON.stringify(response, null, 2))
 
-            expect(response.status).to.equal(200);
+    //         expect(response.status).to.equal(200);
 
-        });
-    })
+    //     });
+    // })
 });
 
 
-describe('PUT API TEST', () => {
+describe('Restaurant API TEST', () => {
     // it('UPDATE RESTAURANT RECORD', () => {
     //     cy.request({
 
@@ -239,5 +240,29 @@ describe('PUT API TEST', () => {
 
     //     });
     // });
-    
+    it('Add Restarant', () => {
+        cy.request({
+            method: 'POST',
+            url: 'https://bsm-backend-production-f5e9.up.railway.app/restuarant',
+            body: {
+
+                "name": "Savour Foods",
+                "email":"savourfoods@gmail.com",
+                "country":"UK",
+                "connect_acc_type":"company",
+                "companyy_reg_number":"0516451678",
+                "phone": "+447922020100",
+                "about": "this is savour foods inside restuarant",
+                "cuisine_types": ["64d5c5877e5c6c5425b97dd4",
+                    "64d2220c319be2003f05fb91"],
+                "city": "Rawalpindi",
+                "address_words": "Bahria Town",
+                "lat": " 73.0635",
+                "long": "33.7132",
+                "post_code": " SE57BT"
+            }
+
+        })
+    });
+
 });
