@@ -141,14 +141,28 @@ describe('POST API Test', () => {
 /--------------------------GET API---------------------------/
 describe('GET API Test', () => {
     // it('Get Restaurants', () => {
-    //     cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/?id=655f41ea50391f005a536035').then((response) => {
+    //     cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/all?offset=0&limit=2&search=&lat=45.4642 &radius=10000&long=9.1900').then((response) => {
 
-    //         cy.log('Response:', JSON.stringify(response, null, 2))
+            // cy.log('Response:', JSON.stringify(response, null, 2))
 
     //         expect(response.status).to.equal(200);
 
     //     });
     // })
+    it('Get All Cuisine Types', () => {
+        cy.request({
+            method: 'GET',
+            headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWY0MzZmNTAzOTFmMDA1YTUzNjBjMSIsImVtYWlsIjoiZ3JlZ2dzbWFuYWdlckB5b3BtYWlsLmNvbSIsInVzZXJfdHlwZSI6Im1hbmFnZXIiLCJpYXQiOjE3MDMzMTE3NzgwMTMsImV4cCI6MTcwMzMxNDM3MDAxM30.TrXOrov3ddmsUBxhzVWm3dnB7CqAVYYbLF4zws5goFs`,
+        
+                    },
+            url:"https://bsm-backend-production-f5e9.up.railway.app/all_cuisine_types"
+        }).then((response) => {
+            cy.log('Response:', JSON.stringify(response.body,null,20)+'\nbody');
+            expect(response.status).to.equal(200);
+        })
+    });
 });
 
 
@@ -240,29 +254,29 @@ describe('Restaurant API TEST', () => {
 
     //     });
     // });
-    it('Add Restarant', () => {
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/restuarant',
-            body: {
+    // it('Add Restarant', () => {
+    //     cy.request({
+    //         method: 'POST',
+    //         url: 'https://bsm-backend-production-f5e9.up.railway.app/restuarant',
+    //         body: {
 
-                "name": "Savour Foods",
-                "email":"savourfoods@gmail.com",
-                "country":"UK",
-                "connect_acc_type":"company",
-                "companyy_reg_number":"0516451678",
-                "phone": "+447922020100",
-                "about": "this is savour foods inside restuarant",
-                "cuisine_types": ["64d5c5877e5c6c5425b97dd4",
-                    "64d2220c319be2003f05fb91"],
-                "city": "Rawalpindi",
-                "address_words": "Bahria Town",
-                "lat": " 73.0635",
-                "long": "33.7132",
-                "post_code": " SE57BT"
-            }
+    //             "name": "Savour Foods",
+    //             "email":"savourfoods@gmail.com",
+    //             "country":"UK",
+    //             "connect_acc_type":"company",
+    //             "companyy_reg_number":"0516451678",
+    //             "phone": "+447922020100",
+    //             "about": "this is savour foods inside restuarant",
+    //             "cuisine_types": ["64d5c5877e5c6c5425b97dd4",
+    //                 "64d2220c319be2003f05fb91"],
+    //             "city": "Rawalpindi",
+    //             "address_words": "Bahria Town",
+    //             "lat": " 73.0635",
+    //             "long": "33.7132",
+    //             "post_code": " SE57BT"
+    //         }
 
-        })
-    });
+    //     })
+    // });
 
 });
