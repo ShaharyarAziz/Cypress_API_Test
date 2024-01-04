@@ -1,6 +1,6 @@
 import { api_url } from "./common_file.cy";
 
-describe('Restaurant Api Tests', () => {
+describe('POST API', () => {
 
     // it('POST API', () => {
     // it('Add Restarant', () => {
@@ -53,22 +53,56 @@ describe('GET API', () => {
             const message = "restaurant fetched successfully"
             const number = "+9203145678901"
             const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            const from = ['09:00']
+            const to = "18:00"
             const actual_result_name = response.body.data.name
             const actual_result_message = response.body.message
             const actual_number = response.body.data.phone
             const actual_days = response.body.data.operational_hours
+
             // cy.log('Response:', JSON.stringify(response, null, 2))
             expect(actual_result_name).to.equal(restaurant_name)
             expect(actual_result_message).to.equal(message)
             expect(actual_number).to.equal(number)
-            days.forEach(((day, index) => {
+            days.forEach(((day, search) => {
+                expect(actual_days[search].day).to.equal(day)
 
-                expect(actual_days[index].day).to.equal(day)
-
+            }))
+            from.forEach(((start, index) => {
+                expect(actual_days[index].from).to.equal(start)
             }))
 
         });
     })
+
+    it.only('GET All Reviews', () => {
+        cy.request({
+            method: 'GET'
+            , url: `${api_url}restuarant/all-reviews/?id=65606ec31af6420055bd410c&offset=0&limit=10&reported=true`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzExMGEyZjM2OGRlNWRhNTdiMTI5NiIsImVtYWlsIjoiYnNtY3g4NkBnbWFpbC5jb20iLCJ1c2VyX3R5cGUiOiJhZG1pbiIsImlhdCI6MTY5NzAxOTY4MzQ4MiwiZXhwIjoxNjk3MDIyMjc1NDgyfQ._UMRMyUmrcr4wk5uSo4lLcCETPxVH5wmLLwLRk_4BXE`,
+
+            },
+        }).then(response => {
+            cy.log('Response:', JSON.stringify(response, null, 2))
+
+        })
+    });
+    it.only('Get Restaurant Staff', () => {
+        cy.request({
+            method: 'GET',
+            url: `${api_url}restuarant/staff?id=65606ec31af6420055bd410c`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjA2ZjNlMWFmNjQyMDA1NWJkNDE0MiIsImVtYWlsIjoidHVzY2FueUB5b3BtYWlsLmNvbSIsInVzZXJfdHlwZSI6Im1hbmFnZXIiLCJpYXQiOjE3MDQzNjU5NDA4MTIsImV4cCI6MTcwNDM2ODUzMjgxMn0.LRgpqHFeHjvNnTafw1VufxqndVSof7uNj0OO5eGiLSw`,
+
+            },
+        }).then(response=>{
+            cy.log('Response:', JSON.stringify(response, null, 2))
+
+        })
+    });
 });
 describe('PUT API Request', () => {
     //  it('UPDATE RESTAURANT RECORD', () => {
