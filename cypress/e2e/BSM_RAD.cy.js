@@ -1,4 +1,5 @@
 describe('POST API Test', () => {
+    const api_url = 'https://bsm-backend-production-f5e9.up.railway.app/'
     it('POST API', () => {
         //---------------User Creation----------------------//
         // cy.request({
@@ -143,7 +144,7 @@ describe('GET API Test', () => {
     it('Get Restaurants', () => {
         cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/all?offset=0&limit=2&search=&lat=45.4642 &radius=10000&long=9.1900').then((response) => {
 
-    cy.log('Response:', JSON.stringify(response, null, 2))
+            cy.log('Response:', JSON.stringify(response, null, 2))
 
             expect(response.status).to.equal(200);
 
@@ -156,8 +157,10 @@ describe('GET API Test', () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWY0MzZmNTAzOTFmMDA1YTUzNjBjMSIsImVtYWlsIjoiZ3JlZ2dzbWFuYWdlckB5b3BtYWlsLmNvbSIsInVzZXJfdHlwZSI6Im1hbmFnZXIiLCJpYXQiOjE3MDMzMTE3NzgwMTMsImV4cCI6MTcwMzMxNDM3MDAxM30.TrXOrov3ddmsUBxhzVWm3dnB7CqAVYYbLF4zws5goFs`,
             },
-            url: "https://bsm-backend-production-f5e9.up.railway.app/all_cuisine_types"
+            // url: "https://bsm-backend-production-f5e9.up.railway.app/all_cuisine_types"
+            url: `${api_url}/all_cuisine_types`
         }).then((response) => {
+
             // cy.log('Response:', JSON.stringify(response.body, null, 20) + '\nbody');
             expect(response.status).to.equal(200);
             cy.wrap(response.body.data).each((element) => {
@@ -165,10 +168,10 @@ describe('GET API Test', () => {
                 expect(element).to.have.property('_id').that.is.a('string');
                 expect(element).to.have.property('name').that.is.a('string');
 
-              });
+            });
         })
     });
-   
+
 });
 
 

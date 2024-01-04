@@ -1,0 +1,1 @@
+export const api_url = 'https://bsm-backend-production-f5e9.up.railway.app/'

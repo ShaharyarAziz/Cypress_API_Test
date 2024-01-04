@@ -1,4 +1,7 @@
+import { api_url } from "./common_file.cy";
+
 describe('Restaurant Api Tests', () => {
+
     // it('POST API', () => {
     // it('Add Restarant', () => {
     //     cy.request({
@@ -26,32 +29,41 @@ describe('Restaurant Api Tests', () => {
     // });
     // });
 
-    it('Update Restaurant Media', () => {
-        cy.request({
-            method: 'POST',
-            url: 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/update-media?id=655f41ea50391f005a536035',
-            headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYzZDc1NTAzOTFmMDA1YTUzNWY1NSIsImVtYWlsIjoiYnNtY3g4NkBnbWFpbC5jb20iLCJ1c2VyX3R5cGUiOiJhZG1pbiIsImlhdCI6MTcwMzA1MzYyODA1MSwiZXhwIjoxNzAzMDU2MjIwMDUxfQ.rmv6QakZL6AvdTriPdxrhrzTFct6BLLc2puyaWPyb94`,
-            
-                        },
-        })
-    });
+    // it('Update Restaurant Media', () => {
+    //     cy.request({
+    //         method: 'POST',
+    //         url: 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/update-media?id=655f41ea50391f005a536035',
+    //         headers: {
+    //                         'Content-Type': 'application/json',
+    //                         'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWYzZDc1NTAzOTFmMDA1YTUzNWY1NSIsImVtYWlsIjoiYnNtY3g4NkBnbWFpbC5jb20iLCJ1c2VyX3R5cGUiOiJhZG1pbiIsImlhdCI6MTcwMzA1MzYyODA1MSwiZXhwIjoxNzAzMDU2MjIwMDUxfQ.rmv6QakZL6AvdTriPdxrhrzTFct6BLLc2puyaWPyb94`,
+
+    //                     },
+    //     })
+    // });
 
 
 
 });
-// describe('GET API', () => {
-//     it('Get Restaurants', () => {
-//         cy.request('GET', 'https://bsm-backend-production-f5e9.up.railway.app/restuarant/?id=655f41ea50391f005a536035').then((response) => {
+describe('GET API', () => {
+    // const api_url = 'https://bsm-backend-production-f5e9.up.railway.app/'
+    it.only('Get Restaurants', () => {
 
-//             cy.log('Response:', JSON.stringify(response, null, 2))
+        cy.request('GET', `${api_url}restuarant/?id=655f46fc50391f005a536765`).then((response) => {
+            const restaurant_name = "The Modern Restaurant"
+            const message = "restaurant fetched successfully"
+            const number="+9203145678901"
+            const actual_result_name = response.body.data.name
+            const actual_result_message = response.body.message
+            const actual_number=response.body.data.phone
+            // cy.log('Response:', JSON.stringify(response, null, 2))
 
-//             expect(response.status).to.equal(200);
+            expect(actual_result_name).to.equal(restaurant_name)
+            expect(actual_result_message).to.equal(message)
+            expect(actual_number).to.equal(number)
 
-//         });
-//     })
-// });
+        });
+    })
+});
 describe('PUT API Request', () => {
     //  it('UPDATE RESTAURANT RECORD', () => {
     //     cy.request({
