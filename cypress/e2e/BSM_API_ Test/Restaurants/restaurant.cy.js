@@ -51,15 +51,21 @@ describe('GET API', () => {
         cy.request('GET', `${api_url}restuarant/?id=655f46fc50391f005a536765`).then((response) => {
             const restaurant_name = "The Modern Restaurant"
             const message = "restaurant fetched successfully"
-            const number="+9203145678901"
+            const number = "+9203145678901"
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
             const actual_result_name = response.body.data.name
             const actual_result_message = response.body.message
-            const actual_number=response.body.data.phone
+            const actual_number = response.body.data.phone
+            const actual_days = response.body.data.operational_hours
             // cy.log('Response:', JSON.stringify(response, null, 2))
-
             expect(actual_result_name).to.equal(restaurant_name)
             expect(actual_result_message).to.equal(message)
             expect(actual_number).to.equal(number)
+            days.forEach(((day, index) => {
+
+                expect(actual_days[index].day).to.equal(day)
+
+            }))
 
         });
     })
